@@ -1,0 +1,9 @@
+{{ define "main" }}
+<div class="row bg-dark text-white">
+  {{ .Content }}
+</div>
+  {{ range where .Site.RegularPages "Type" "post" }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    {{ .Summary }}
+  {{ end }}
+{{ end }}

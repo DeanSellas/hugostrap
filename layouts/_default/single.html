@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ if eq .Params.Type "post" }}
+    
+
+    <p class="articleAuthor">Written By: {{ .Params.author }}</p>
+
+    {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }} {{
+    $dateHuman := .Date | time.Format ":date_long" }}
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    <div class="article mt-3">{{ .Content }}</div>
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+  {{ else }}
+    <div class="article mt-3">{{ .Content }}</div>
+  {{ end }}
+{{ end }}
