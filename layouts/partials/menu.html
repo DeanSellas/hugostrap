@@ -21,6 +21,7 @@ Renders a menu for the given menu ID.
 {{- define "partials/inline/menu/walk.html" }}
   {{- $page := .page }}
   {{- $menuID := .menuID }}
+  {{- $dropdown := .dropdown }}
   {{- range .menuEntries }}
 
     {{- $attrs := dict "href" .URL }}
@@ -33,13 +34,32 @@ Renders a menu for the given menu ID.
         {{- $attrs = merge $attrs (dict "class" "nav-link") }}
       {{- end }}
 
+      {{- if $dropdown }}
+        {{- $attrs = merge $attrs (dict "class" "dropdown-item") }}
+      {{- end }}
+
     {{- $name := .Name }}
     {{- with .Identifier }}
       {{- with T . }}
         {{- $name = . }}
       {{- end }}
     {{- end }}
-    <li class="nav-item">
+
+    {{- $liAttr := dict "class" "nav-item" }}
+    {{ with .Params.dropdownParent }}
+      {{- if eq . true }}
+      
+        {{- $liAttr = merge $liAttr (dict "class" "nav-item dropdown" "id" "navbarDropdown" "role" "button" "data-bs-toggle" "dropdown" "aria-expanded" "false") }}
+        {{- $attrs = merge $attrs (dict "class" "nav-link dropdown-toggle") }}
+
+      {{- end }}
+    {{ end }}
+
+    <li {{- range $k, $v := $liAttr }}
+      {{- with $v }}
+        {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+      {{- end }}
+    {{- end -}}>
       <a
         {{- range $k, $v := $attrs }}
           {{- with $v }}
@@ -48,8 +68,8 @@ Renders a menu for the given menu ID.
         {{- end -}}
       >{{ $name }}</a>
       {{- with .Children }}
-        <ul class="dropdown-menu">
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" . "dropdown" true) }}
         </ul>
       {{- end }}
     </li>

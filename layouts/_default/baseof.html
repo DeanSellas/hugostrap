@@ -4,14 +4,14 @@
   {{ partial "head.html" . }}
 </head>
 <body>
-  <section class="bg-light mainSection roboto-regular">
-    <header class="container">
+  <section class="">
+    <header class="container-fluid">
       {{ partial "header.html" . }}
     </header>
     <main class="container">
       {{ block "main" . }}{{ end }}
     </main>
-    <footer class="container">
+    <footer class="container-fluid">
       {{ partial "footer.html" . }}
     </footer>
   </section>
