@@ -46,11 +46,12 @@ Renders a menu for the given menu ID.
     {{- end }}
 
     {{- $liAttr := dict "class" "nav-item" }}
+
     {{ with .Params.dropdownParent }}
       {{- if eq . true }}
       
-        {{- $liAttr = merge $liAttr (dict "class" "nav-item dropdown" "id" "navbarDropdown" "role" "button" "data-bs-toggle" "dropdown" "aria-expanded" "false") }}
-        {{- $attrs = merge $attrs (dict "class" "nav-link dropdown-toggle") }}
+        {{- $liAttr = merge $liAttr (dict "class" "nav-item dropdown" "id" "navbarDropdown" "role" "button" "aria-expanded" "false") }}
+        {{- $attrs = merge $attrs (dict "class" "nav-link dropdown-toggle" "data-bs-toggle" "dropdown" ) }}
 
       {{- end }}
     {{ end }}
