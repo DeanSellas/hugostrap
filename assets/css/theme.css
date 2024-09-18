@@ -1,0 +1,8 @@
+.header {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
