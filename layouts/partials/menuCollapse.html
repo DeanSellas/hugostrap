@@ -11,6 +11,7 @@ Renders a menu for the given menu ID.
 {{- $menuID := .menuID }}
 
 {{- with index site.Menus $menuID }}
+<div class="col-md-10 col-12 mx-auto">
   <nav class="navbar navbar-expand-lg d-block">
     <div class="container-fluid">
       <h1 class="text-center text-md-start d-inline-block">
@@ -27,6 +28,7 @@ Renders a menu for the given menu ID.
       </div>
     </div>
   </nav>
+</div>
 {{- end }}
 
 {{- define "partials/inline/menu/walk.html" }}
