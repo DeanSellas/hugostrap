@@ -6,3 +6,11 @@
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+.image-circle {
+    border-radius: 50%;
+}
+
+hr {
+    margin: 2.5rem 0 !important;
+}
