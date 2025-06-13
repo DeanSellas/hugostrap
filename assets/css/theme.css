@@ -13,6 +13,14 @@ hr {
     margin: 2.5rem 0 !important;
 }
 
+.growing {
+    transition: transform 0.2s ease-in-out;
+}
+.growing:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
 @media (min-width: 992px) {
     .dropdown:hover .dropdown-menu {
         display: block;
